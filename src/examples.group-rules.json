@@ -1,0 +1,45 @@
+{
+  "share": {
+    "groupBy": ["directTx"],
+    "logical": "$allOf",
+    "triggers": [
+      {
+        "logical": "$anyOf",
+        "filter": [{
+          "prop": "listType",
+          "conditions": [{
+            "op": "$eq",
+            "value": "123"
+          }]
+        }],
+        "aggregate": [
+          {
+            "prop": "amount",
+            "agg": "$sum",
+            "as": "total",
+            "filter": false
+          },
+          {
+            "prop": "amount",
+            "agg": "$sum"
+          },
+          {
+            "prop": "share",
+            "agg": "$sum",
+            "expr": {
+              "op": "$divide",
+              "args": ["amount", "total"]
+            },
+            "conditions": [{
+              "op": "$gt",
+              "value": 0.005
+            }, {
+              "op": "$lt",
+              "value": 0.006
+            }]
+          }
+        ]
+      }
+    ]
+  }
+}

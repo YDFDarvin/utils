@@ -1,0 +1,6 @@
+{
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "./group-rule.schema.json"
+  }
+}

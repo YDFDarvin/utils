@@ -1,0 +1,32 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "jest.config.json"
+      ],
+      "url": "https://askirmas.github.io/jest.schema.json"
+    },
+    {
+      "fileMatch": [
+        "*.schema.json"
+      ],
+      "url": "http://json-schema.org/draft-07/schema#"
+    },
+    {
+      "fileMatch": [
+        "*.group-rules.*json"
+      ],
+      "url": "./src/group-rules.schema.json"
+    },
+    {
+      "fileMatch": [
+        ".nycrc.json"
+      ],
+      "url": "https://json.schemastore.org/nycrc.json"
+    }
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

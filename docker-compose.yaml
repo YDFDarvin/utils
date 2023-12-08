@@ -1,0 +1,53 @@
+version: "3.9"
+# x-network
+  # networks:
+  #   - rabbit
+  # network_mode: host
+
+services:
+  broker:
+    # container_name: rabbit
+    hostname: ${RMQ_HOST}
+    image: rabbitmq:3.10.7-management
+    ports:
+      - 15672:15672
+      - ${RMQ_PORT}:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RMQ_PASS}
+      - RABBITMQ_DEFAULT_VHOST=${RMQ_VHOST}
+      # - RABBITMQ_NODE_PORT=5672
+      - RABBITMQ_CONFIG_FILE=/data/configuration/rabbitmq/conf/rabbitmq.conf
+      - RABBITMQ_ADVANCED_CONFIG_FILE=/usr/rabbitmq/adv/advanced.config
+      - RABBITMQ_ENABLED_PLUGINS_FILE=/usr/rabbitmq/plugings/plugins.er
+    volumes:
+      - ./rabbitmq.conf:/data/configuration/rabbitmq/conf/rabbitmq.conf:ro
+      - ./rabbitmq-advanced.config:/usr/rabbitmq/adv/advanced.config:ro
+      - ./rabbitmq.plugins:/usr/rabbitmq/plugings/plugins.er
+
+  db: 
+    # container_name: mongo
+    image: mongo:5.0.3
+    hostname: ${DB_HOST}
+    ports:
+      - ${DB_PORT}:27017
+    volumes:
+      - ../mongodb:/data/db
+
+  arangodb:
+    image: arangodb:3.9.0
+    hostname: ${ARANGO_HOST}
+    ports:
+      - ${ARANGO_PORT}:8529
+    environment:
+      #- ARANGO_NO_AUTH=1
+      - ARANGO_ROOT_PASSWORD=${ARANGO_PASSWORD}
+    volumes:
+      - ./arangodb:/var/lib/arangodb3
+
+
+networks:
+  # rabbit:
+  default:
+    # external: true
+    # name: rabbit

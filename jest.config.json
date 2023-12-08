@@ -1,0 +1,30 @@
+{
+  "preset": "ts-jest",
+  "watchPathIgnorePatterns": [".*\\.json"],
+  "setupFilesAfterEnv": [
+    "./src/jest-setup.ts"
+  ],
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/*.{ts,tsx,js,jsx}",
+    "!**/*.migrations.ts",
+    "!**/node_modules/**",
+    "!**/coverage/**",
+    "!**/trace.ts",
+    "!**/tracing.ts",
+    "!**/*.testing.ts",
+    "!**/cypress/**",
+    "!**/*.d.ts"
+  ],
+  "coverageThreshold": {
+  },
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/dist/",
+    "/mongo/",
+    "/nest-rmq.spec/"
+  ],
+  "testEnvironment": "node",
+  "verbose": true,
+  "bail": false
+}
