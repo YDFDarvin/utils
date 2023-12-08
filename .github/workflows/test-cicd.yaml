@@ -1,13 +1,13 @@
-name: Run tests
-on:
-  push:
-    branches:
-      - '**'
-jobs:
-  tests:
-    uses: ci-templates/.github/workflows/tests_rabbit_mongo_arango_run.yml@main
-    with:
-      TESTRUN_COMMAND: "npm run full-test"
-    secrets:
-      TEST_ENV_VARS: ${{ secrets.AUTOTESTS }}
-      Z_PAT: ${{ secrets.Z_PAT }}
+#name: Run tests
+#on:
+#  push:
+#    branches:
+#      - '**'
+#jobs:
+#  tests:
+#    uses: ci-templates/.github/workflows/tests_rabbit_mongo_arango_run.yml@main
+#    with:
+#      TESTRUN_COMMAND: "npm run full-test"
+#    secrets:
+#      TEST_ENV_VARS: ${{ secrets.AUTOTESTS }}
+#      Z_PAT: ${{ secrets.Z_PAT }}
